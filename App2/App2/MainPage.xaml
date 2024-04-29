@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App2.MainPage">
+
+    <StackLayout>
+        <StackLayout>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
+
+                <Label Margin="0,0,0,10" Text="Electric Bill" FontAttributes="Bold" FontSize="Large" TextColor="Gray" HorizontalTextAlignment="Center" ></Label>
+                <Entry x:Name="meterN" Placeholder="Meter Number - Update, Search, Delete"></Entry>
+                <Entry x:Name="currentR" Placeholder="Enter Current Reading"></Entry>
+                <Entry x:Name="previousR" Placeholder="Enter Previous Reading"></Entry>
+                <Picker x:Name="typeOfReg" Title="Type of Registration">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>H</x:String>
+                            <x:String>B</x:String>
+                            <x:String>Otherwise</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Button x:Name="btnAdd" WidthRequest="200" Text="Add" Clicked="BtnAdd_Clicked" />
+                    <Button x:Name="btnRead" WidthRequest="200" Text="Search" Clicked="BtnRead_Clicked" />
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Button x:Name="btnUpdate" WidthRequest="200" Text="Update" Clicked="BtnUpdate_Clicked"/>
+                    <Button x:Name="btnDelete" WidthRequest="200" Text="Delete" Clicked="BtnDelete_Clicked" />
+                </StackLayout>
+
+                <ListView x:Name="detailsD">
+                    <ListView.Header>
+                        <Grid Padding="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Meter Number" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+                            <Label Grid.Column="1" Text="Principal Amount" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+                            <Label Grid.Column="2" Text="Amount Payable" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+                        </Grid>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid Padding="5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="60"/>
+                                            <RowDefinition Height="60"/>
+                                            <RowDefinition Height="10"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="3*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding MeterNo}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding PrincipalAmount}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Red" FontAttributes="Bold"/>
+                                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding AmountPayable}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Green" FontAttributes="Bold"/>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
